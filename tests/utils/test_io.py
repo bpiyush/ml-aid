@@ -5,7 +5,9 @@ import unittest
 from os.path import join, isdir
 
 from mlaid.utils.path import repo_path
-from mlaid.utils.io import load_pkl, save_pkl, load_yml, save_yml, load_json, save_json
+from mlaid.utils.io import (
+    load_pkl, save_pkl, load_yml, save_yml, load_json, save_json, load_txt, save_txt
+)
 
 
 class TestPickle(unittest.TestCase):
@@ -65,6 +67,25 @@ class TestJSON(unittest.TestCase):
         self.assertEqual(data, self.data)
 
 
+class TestTxt(unittest.TestCase):
+    """Class to run tests on `txt` functions in utils/io.py"""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.assets_dir = join(repo_path, "assets")
+        assert isdir(cls.assets_dir)
+
+        cls.data = ["a", "b", "c"]
+        cls.txt_path = join(cls.assets_dir, "data.txt")
+    
+    def test_save_txt(self):
+        save_txt(self.data, self.txt_path)
+    
+    def test_load_txt(self):
+        data = load_txt(self.txt_path)
+        self.assertEqual(data, self.data)
+
+
 def suite():
     """Helper function to run tests in desired order and grouping.
     """
@@ -75,6 +96,8 @@ def suite():
     suite.addTest(TestYAML('test_load_yml'))
     suite.addTest(TestJSON('test_save_json'))
     suite.addTest(TestJSON('test_load_json'))
+    suite.addTest(TestTxt('test_save_txt'))
+    suite.addTest(TestTxt('test_load_txt'))
     return suite
 
 

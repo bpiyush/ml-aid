@@ -2,7 +2,7 @@
 Utilities for input-output loading/saving.
 """
 
-from typing import Any
+from typing import Any, List
 import yaml
 import pickle
 import json
@@ -86,3 +86,31 @@ def save_json(data: dict, path: str):
     """Helper to save `dict` as .json file."""
     with open(path, 'w') as f:
         json.dump(data, f)
+
+
+def load_txt(path: str) -> List:
+    """Loads lines of a .txt file.
+
+    Args:
+        path (str): path to the .txt file
+
+    Returns:
+        List: lines of .txt file
+    """
+    with open(path) as f:
+        lines = f.read().splitlines()
+    return lines
+
+
+def save_txt(data: dict, path: str):
+    """Writes data (lines) to a txt file.
+
+    Args:
+        data (dict): List of strings
+        path (str): path to .txt file
+    """
+    assert isinstance(data, list)
+
+    lines = "\n".join(data)
+    with open(path, "w") as f:
+        f.write(str(lines))
