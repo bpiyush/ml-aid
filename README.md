@@ -10,6 +10,7 @@ For basic input/output operations w.r.t. `yml`, `pkl`, `json` and `txt` files, p
 ```python
 from mlaid.utils.io import load_yml, save_yml
 
+# define sample dict
 data = {
     "a": 1,
     "b": 2,
