@@ -5,7 +5,7 @@ import unittest
 from os.path import join, isdir
 
 from mlaid.utils.path import repo_path
-from mlaid.utils.io import load_pkl, save_pkl, load_yml, save_yml
+from mlaid.utils.io import load_pkl, save_pkl, load_yml, save_yml, load_json, save_json
 
 
 class TestPickle(unittest.TestCase):
@@ -46,12 +46,35 @@ class TestYAML(unittest.TestCase):
         self.assertEqual(data, self.data)
 
 
+class TestJSON(unittest.TestCase):
+    """Class to run tests on `json` functions in utils/io.py"""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.assets_dir = join(repo_path, "assets")
+        assert isdir(cls.assets_dir)
+
+        cls.data = {"a": 1, "b": 2, "c": 3}
+        cls.json_path = join(cls.assets_dir, "data.json")
+    
+    def test_save_json(self):
+        save_json(self.data, self.json_path)
+    
+    def test_load_json(self):
+        data = load_json(self.json_path)
+        self.assertEqual(data, self.data)
+
+
 def suite():
+    """Helper function to run tests in desired order and grouping.
+    """
     suite = unittest.TestSuite()
     suite.addTest(TestPickle('test_save_pkl'))
     suite.addTest(TestPickle('test_load_pkl'))
     suite.addTest(TestYAML('test_save_yml'))
     suite.addTest(TestYAML('test_load_yml'))
+    suite.addTest(TestJSON('test_save_json'))
+    suite.addTest(TestJSON('test_load_json'))
     return suite
 
 

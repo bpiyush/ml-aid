@@ -3,8 +3,9 @@ Utilities for input-output loading/saving.
 """
 
 from typing import Any
-import pickle
 import yaml
+import pickle
+import json
 
 
 class PrettySafeLoader(yaml.SafeLoader):
@@ -72,3 +73,16 @@ def save_pkl(data: Any, path: str) -> None:
     """
     with open(path, 'wb') as f:
         pickle.dump(data, f)
+
+
+def load_json(path: str) -> dict:
+    """Helper to load json file"""
+    with open(path, 'rb') as f:
+        data = json.load(f)
+    return data
+
+
+def save_json(data: dict, path: str):
+    """Helper to save `dict` as .json file."""
+    with open(path, 'w') as f:
+        json.dump(data, f)
