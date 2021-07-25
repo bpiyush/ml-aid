@@ -24,4 +24,3 @@ save_yml(data, yml_path)
 # load the dict from `yml` file
 data = read_yml(yml_path)
 ```
-
