@@ -70,7 +70,7 @@ print(y.a.b.c) # prints 2
 * Logging helpers
 
 ```python
-from mlaid.utils.log import color
+from mlaid.utils.log import color, print_update
 
 # print yellow-colored message
 print(color("Sample colored message", "yellow"))
