@@ -78,3 +78,8 @@ print(color("Sample colored message", "yellow"))
 # print message as an update
 print_update("Sample update message")
 ```
+
+### Plotting and visualizations
+
+* Plotting categorical attribute in a dataframe
+* Plotting real-valued attribute in a dataframe
