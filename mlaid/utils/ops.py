@@ -76,3 +76,17 @@ def numpify(x: torch.Tensor) -> np.ndarray:
         x = x.numpy()
     
     return x
+
+
+class DotDict(dict):
+    """Allows dot.notation access to dictionary attributes
+
+    Args:
+        dict (dict): input dictionary
+    """
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
+
+    def __getattr__(*args):
+        val = dict.get(*args)
+        return DotDict(val) if type(val) is dict else val

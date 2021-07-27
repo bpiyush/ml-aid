@@ -7,7 +7,7 @@ import numpy as np
 import torch
 
 from mlaid.utils.path import repo_path
-from mlaid.utils.ops import get_from_dict, set_in_dict, tensorize, numpify
+from mlaid.utils.ops import DotDict, get_from_dict, set_in_dict, tensorize, numpify
 
 
 class TestOps(unittest.TestCase):
@@ -41,6 +41,11 @@ class TestOps(unittest.TestCase):
         x = torch.ones((3, 4, 5), requires_grad=True)
         x_ = numpify(x)
         self.assertTrue((np.ones((3, 4, 5)) == x_).all())
+    
+    def test_dotdict(self):
+        x = DotDict(self._dict)
+        self.assertEqual(x.a.b.c, 10)
+        self.assertEqual(x.x, 3)
 
 
 def suite():
@@ -51,6 +56,7 @@ def suite():
     suite.addTest(TestOps('test_set_in_dict'))
     suite.addTest(TestOps('test_tensorize'))
     suite.addTest(TestOps('test_numpify'))
+    suite.addTest(TestOps('test_dotdict'))
     return suite
 
 

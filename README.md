@@ -56,3 +56,13 @@ value = get_from_dict(x, ["a", "b", "c"])
 set_in_dict(x, ["a", "b", "c"], value=10)
 # x = {"a": {"b": {"c": 10}}, "x": 3}
 ```
+
+* Convert a dictionary to class with attributes accesible via dot notation
+
+```python
+from mlaid.utils.ops import DotDict
+
+x = {"a": {"b": {"c": 2}}, "x": 3}
+y = DotDict(x)
+print(y.a.b.c) # prints 2
+```
