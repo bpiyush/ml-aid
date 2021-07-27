@@ -29,4 +29,29 @@ save_yml(data, yml_path)
 data = read_yml(yml_path)
 ```
 
+### Basic operations
 
+* Converting a torch tensor into numpy ndarray and vice-versa:
+```python
+from mlaid.utils.ops import tensorize, numpify
+
+x = torch.ones((3, 4, 5), requires_grad=True)
+x = numpify(x)
+
+x = np.ones((3, 4, 5))
+x = tensorize(x)
+```
+
+* Getting and setting values in a nested dictionary
+```python
+from mlaid.utils.ops import get_from_dict, set_in_dict
+
+x = {"a": {"b": {"c": 2}}, "x": 3}
+
+# value = x["a"]["b"]["c"] = 2
+value = get_from_dict(self._dict, ["a", "b", "c"])
+
+# set value in the dictionary
+set_in_dict(self._dict, ["a", "b", "c"], value=10)
+# x = {"a": {"b": {"c": 10}}, "x": 3}
+```
