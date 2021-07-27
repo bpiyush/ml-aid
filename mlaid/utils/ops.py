@@ -53,3 +53,26 @@ def tensorize(x: np.ndarray) -> torch.Tensor:
         assert isinstance(x, np.ndarray)
         x = torch.from_numpy(x)
     return x
+
+
+def numpify(x: torch.Tensor) -> np.ndarray:
+    """Converts torch tensor to numpy ndarray
+
+    Args:
+        x (torch.Tensor): input
+
+    Returns:
+        np.ndarray: numpy ndarray conversion of input
+    """
+    if not isinstance(x, np.ndarray):
+        assert isinstance(x, torch.Tensor)
+
+        if x.requires_grad:
+            x = x.detach()
+        
+        if x.is_cuda:
+            x = x.cpu()
+        
+        x = x.numpy()
+    
+    return x

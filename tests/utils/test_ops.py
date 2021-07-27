@@ -7,7 +7,7 @@ import numpy as np
 import torch
 
 from mlaid.utils.path import repo_path
-from mlaid.utils.ops import get_from_dict, set_in_dict, tensorize
+from mlaid.utils.ops import get_from_dict, set_in_dict, tensorize, numpify
 
 
 class TestOps(unittest.TestCase):
@@ -31,6 +31,17 @@ class TestOps(unittest.TestCase):
         x_ = tensorize(x)
         self.assertTrue((torch.ones((3, 4, 5)) == x_).all())
 
+    def test_numpify(self):
+        # vanilla case
+        x = torch.ones((3, 4, 5))
+        x_ = numpify(x)
+        self.assertTrue((np.ones((3, 4, 5)) == x_).all())
+
+        # case when x is differentiable
+        x = torch.ones((3, 4, 5), requires_grad=True)
+        x_ = numpify(x)
+        self.assertTrue((np.ones((3, 4, 5)) == x_).all())
+
 
 def suite():
     """Helper function to run tests in desired order and grouping.
@@ -39,6 +50,7 @@ def suite():
     suite.addTest(TestOps('test_get_from_dict'))
     suite.addTest(TestOps('test_set_in_dict'))
     suite.addTest(TestOps('test_tensorize'))
+    suite.addTest(TestOps('test_numpify'))
     return suite
 
 
