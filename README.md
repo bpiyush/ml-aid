@@ -49,10 +49,10 @@ from mlaid.utils.ops import get_from_dict, set_in_dict
 x = {"a": {"b": {"c": 2}}, "x": 3}
 
 # get value from nested dictionary
-value = get_from_dict(self._dict, ["a", "b", "c"])
+value = get_from_dict(x, ["a", "b", "c"])
 # value = x["a"]["b"]["c"] = 2
 
 # set value in the dictionary
-set_in_dict(self._dict, ["a", "b", "c"], value=10)
+set_in_dict(x, ["a", "b", "c"], value=10)
 # x = {"a": {"b": {"c": 10}}, "x": 3}
 ```
