@@ -1,5 +1,7 @@
 # ML-AID: ML and AI Development
-Utilities for ML and AI Development towards research
+Utilities for ML and AI Development towards research. This is mostly a collection of code I frequently use in ML/AI development.This is an ever-evolving repo and I will keep adding stuff as I keep discovering. Please feel free to report bugs via Github issues and open a PR if you want to contribute.
+
+Thank-you to the wonderful opensource community, the stackoverflow community and all you developers!
 
 ## Installation
 
