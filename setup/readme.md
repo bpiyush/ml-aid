@@ -12,6 +12,6 @@
   ```
 * Install requirements
   ```bash
-  conda install pandas numpy PyYAML ipdb
+  conda install pandas numpy PyYAML ipdb termcolor
   pip install torch torchvision torchaudio torchtext
   ```

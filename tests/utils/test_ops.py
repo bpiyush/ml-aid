@@ -8,6 +8,7 @@ import torch
 
 from mlaid.utils.path import repo_path
 from mlaid.utils.ops import DotDict, get_from_dict, set_in_dict, tensorize, numpify
+from mlaid.utils.log import color, print_update
 
 
 class TestOps(unittest.TestCase):
@@ -46,6 +47,12 @@ class TestOps(unittest.TestCase):
         x = DotDict(self._dict)
         self.assertEqual(x.a.b.c, 10)
         self.assertEqual(x.x, 3)
+    
+    def test_print_update(self):
+        print_update("Sample update message")
+    
+    def test_color(self):
+        print(color("Sample colored message", "yellow"))
 
 
 def suite():
@@ -57,6 +64,8 @@ def suite():
     suite.addTest(TestOps('test_tensorize'))
     suite.addTest(TestOps('test_numpify'))
     suite.addTest(TestOps('test_dotdict'))
+    suite.addTest(TestOps('test_print_update'))
+    suite.addTest(TestOps('test_color'))
     return suite
 
 

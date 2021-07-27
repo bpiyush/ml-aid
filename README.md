@@ -66,3 +66,15 @@ x = {"a": {"b": {"c": 2}}, "x": 3}
 y = DotDict(x)
 print(y.a.b.c) # prints 2
 ```
+
+* Logging helpers
+
+```python
+from mlaid.utils.log import color
+
+# print yellow-colored message
+print(color("Sample colored message", "yellow"))
+
+# print message as an update
+print_update("Sample update message")
+```
