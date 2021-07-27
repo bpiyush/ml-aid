@@ -1,6 +1,10 @@
 # ML-AID: ML and AI Development
 Utilities for ML and AI Development towards research
 
+## Installation
+
+The setup is done via a `conda` environment. Please follow the steps [here](setup/readme.md) for instructions.
+
 ## Utilities
 
 ### IO
