@@ -12,5 +12,5 @@
   ```
 * Install requirements
   ```bash
-  conda install pandas numpy PyYAML
+  conda install pandas numpy PyYAML ipdb
   ```
