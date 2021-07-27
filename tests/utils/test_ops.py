@@ -3,9 +3,11 @@ Tests pythonic operations functions.
 """
 import unittest
 from os.path import join, isdir
+import numpy as np
+import torch
 
 from mlaid.utils.path import repo_path
-from mlaid.utils.ops import get_from_dict, set_in_dict
+from mlaid.utils.ops import get_from_dict, set_in_dict, tensorize
 
 
 class TestOps(unittest.TestCase):
@@ -23,6 +25,11 @@ class TestOps(unittest.TestCase):
         set_in_dict(self._dict, ["a", "b", "c"], value=10)
         value = get_from_dict(self._dict, ["a", "b", "c"])
         self.assertEqual(value, 10)
+    
+    def test_tensorize(self):
+        x = np.ones((3, 4, 5))
+        x_ = tensorize(x)
+        self.assertTrue((torch.ones((3, 4, 5)) == x_).all())
 
 
 def suite():
@@ -31,6 +38,7 @@ def suite():
     suite = unittest.TestSuite()
     suite.addTest(TestOps('test_get_from_dict'))
     suite.addTest(TestOps('test_set_in_dict'))
+    suite.addTest(TestOps('test_tensorize'))
     return suite
 
 

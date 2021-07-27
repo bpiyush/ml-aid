@@ -13,4 +13,5 @@
 * Install requirements
   ```bash
   conda install pandas numpy PyYAML ipdb
+  pip install torch torchvision torchaudio torchtext
   ```

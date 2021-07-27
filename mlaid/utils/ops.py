@@ -4,6 +4,8 @@ Utilities for simple pythonic operations.
 from typing import List, Any
 from functools import reduce
 import operator
+import numpy as np
+import torch
 
 
 def get_from_dict(dataDict: dict, mapList: List):
@@ -36,3 +38,18 @@ def set_in_dict(dataDict: dict, mapList: List, value: Any):
         value (Any): value to be replaced
     """
     get_from_dict(dataDict, mapList[:-1])[mapList[-1]] = value
+
+
+def tensorize(x: np.ndarray) -> torch.Tensor:
+    """Converts numpy ndarray object to torch tensor
+
+    Args:
+        x (np.ndarray): input
+
+    Returns:
+        torch.tensor: tensorized input
+    """
+    if not isinstance(x, torch.Tensor):
+        assert isinstance(x, np.ndarray)
+        x = torch.from_numpy(x)
+    return x
