@@ -15,3 +15,10 @@
   conda install pandas numpy PyYAML ipdb termcolor matplotlib seaborn
   pip install torch torchvision torchaudio torchtext
   ```
+
+
+In order to run the code, you need to set the `PYTHONPATH` as follows:
+```bash
+cd /path/to/ml-aid/
+export PYTHONPATH=$PWD
+```
